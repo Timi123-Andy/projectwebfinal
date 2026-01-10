@@ -1,0 +1,162 @@
+
+        body{
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            background-image: url(images/fd\ bg.PNG);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+        .header{
+            display: flex;
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: #8e2a2a;
+            color: white;
+            padding: 15px;
+        }
+        .Logo{
+         width: 60px;
+         height: 60px;
+         object-fit: contain;
+        }
+        .header h1 {
+          margin: 0;
+          font-size: 32px;
+        }
+        .header p {
+          margin: 5px 0 0;
+        }
+
+       .container{
+            display: grid;
+            grid-template-columns: 3fr 1.5fr;
+            gap: 20px;
+            padding: 20px;
+       }
+
+       /* MENU GRID */
+       #menu{
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 20px;
+          padding: 20px;
+          animation: fadein .6s ease-in;
+
+       }
+       .menu-item{
+          background: white;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          /* display: flex;
+          flex-direction: column; */
+          transition: transform .3s, box-shadow .3s;
+       }
+       .menu-item:hover{
+         transform: translateY(-6px);
+         box-shadow: 0 10px 18px rgba(0,0,0,.18);
+       }
+       .menu-item img{
+          width: 100%;
+          height: 150px;
+          object-fit: cover;
+       }
+
+       .menu-info{
+          padding: 15px;
+          flex: 1;
+          text-align: center;
+       }
+       .menu-info h3{
+          margin: 0 0 5px;
+       }
+
+       .price{
+          color: #8e2a2a;
+          font-weight: bold;
+          margin: 8px 0;
+       }
+       .menu-item button{
+          background: #8e2a2a;
+          color: white;
+          border: none;
+          padding: 8px 12px;
+          cursor: pointer;
+          width: 100%;
+          font-size: 14px;
+          transition: background .3s, transform .2s;
+       }
+       .menu-item button:hover{
+          background: #c46b6b;
+          transform: scale(1.05);
+       }
+       @keyframes fadein{
+         from{opacity:0; transform:translateY(15px);}
+         to{opacity:1; transform:translateY(0);}
+       }
+
+       .cart-box, h2{
+         color: white;
+       }
+       .cart-item{
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          font-size: 14px;
+          color: white;
+       }
+       .cart-item button{
+          background: #ccc;
+          border: none;
+          cursor: pointer;
+          padding: 2px 6px;
+       }
+       .cart-item button:hover{
+          background: #ff6b6b;
+          color: white;
+       }
+
+       .total{
+          font-weight: bold;
+          margin-top: 15px;
+          font-size: 16px;
+          color: white;
+       }
+
+       .confirm-btn{
+          margin-top: 15px;
+          width: 100%;
+          padding: 10px;
+          background: #27ae60;
+          border: none;
+          color: white;
+          cursor: pointer;
+          font-size: 15px;
+       }
+       .confirm-btn:hover{
+          background: #219150;
+       }
+     
+       #confirmation{
+            padding: 20px;
+            margin: 20px;
+            background: #eafaf1;
+            border-radius: 10px;
+       }
+
+       #confirmation h2{
+         color: #8e2a2a;
+       }
+       /* MOBILE */
+       @media(max-width:600px){
+         #menu{padding:10px;}
+       }

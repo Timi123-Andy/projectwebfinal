@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Restaurant.css">
+</head>
+<body>
+    <!-- The Header -->
+    <header class="header">
+        <img src="images/Rt.Logo.webp" alt="Restaurant Logo" class="Logo">
+        <h1>FeedMall</h1>
+        <p>Delicious meals, delivered fast</p>
+    </header>
+
+    <!-- Main Content -->
+        <div class="container">
+
+            <!-- MENU -->
+            <div id="menu"></div>
+
+            <!-- CART -->
+            <div id="cart-box">
+                <h2>Your Cart</h2>
+                <div id="cart"></div>
+                <div class="total">Total: #<span id="total">0</span></div>
+                <button class="confirm-btn" onclick="confirmOrder()">Confirm Order</button>
+            </div>
+        </div>
+
+        <!-- ORDER CONFIRMATION -->
+    <div id="confirmation"></div>
+
+    <!-- JAVASCRIPT -->
+     <script>
+        // Global State (Context API Style)
+        const Store = {
+            cart:[]
+        };
+
+        // Food Menu Dataset
+        const menuData = [
+            {id:1, name: "Jollof Rice", price:2500, image: "images/Jollof Rice 2.jpg"},
+            {id:2, name: "Fried Rice", price:3000, image: "images/Fried Rice.PNG"},
+            {id:3, name: "Grilled Chicken", price:2000, image: "images/Grilled Chicken.PNG"},
+            {id:4, name: "Beef Burger", price:3500, image: "images/Beef Burger.PNG"},
+            {id:4, name: "Pizza", price:10000, image: "images/Pizza2.png"},
+            {id:4, name: "Prawn Spring Rolls", price:4000, image: "images/Prawn spring rolls.jpg"},
+        ];
+
+        // DOM Elements
+        const menuDiv = document.getElementById("menu");
+        const cartDiv = document.getElementById("cart");
+        const totalSpan = document.getElementById("total");
+        const confirmationDiv = document.getElementById("confirmation");
+
+        // Render Menu
+        function renderMenu() {
+            menuDiv.innerHTML = "";
+
+            menuData.forEach(item =>{
+                const div = document.createElement("div");
+                div.className = "menu-item";
+
+                div.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="menu-info">
+                <h3>${item.name}</h3>
+                <div class="price">#${item.price}</div
+                </div>
+                <button>Add to Cart</button>
+                `;
+
+                div.querySelector("button").onclick = () => addToCart(item);
+                menuDiv.appendChild(div);
+            });
+        }
+
+        function addToCart(item) {
+            Store.cart.push(item);
+            renderCart();
+        }
+
+        // Remove Item from Cart
+        function removeFromCart(index) {
+            Store.cart.splice(index, 1);
+            renderCart();
+        }
+
+        // Render Cart
+        function renderCart() {
+            cartDiv.innerHTML = "";
+            let total = 0;
+
+            Store.cart.forEach((item, index) =>{
+                total += item.price;
+
+                const div = document.createElement("div");
+                div.className = "cart-item";
+
+                div.innerHTML = `
+                ${item.name}
+                <button onclick="removeFromCart(${index})">x</button>
+                `;
+
+                cartDiv.appendChild(div);
+            });
+
+            totalSpan.textContent = total;
+        }
+
+        // Confirm Order
+        function confirmOrder() {
+            if(Store.cart.length === 0) {
+                alert("Your cart is empty")
+                return;
+            }
+
+            confirmationDiv.innerHTML = `
+            <h2>Order Confirmed</h2>
+            <p>Your order has been received.</p>
+            <p>Total Amount: #${totalSpan.textContent}</p>
+            `;
+
+            Store.cart = [];
+            renderCart();
+        }
+
+        // Initialize Application
+        renderMenu();
+     </script>
+</body>
+</html>
