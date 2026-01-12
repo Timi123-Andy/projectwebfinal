@@ -2,10 +2,10 @@
         body{
             font-family: "Segoe UI", Arial, sans-serif;
             margin: 0;
-            background-image: url(images/fd\ bg.PNG);
+            background-image: url(images/Fdbg.PNG);
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
+            background-repeat: no-repeat;            
             background-attachment: fixed;
             overflow-x: hidden;
         }
